@@ -1,0 +1,6 @@
+[queue_form]
+fields = [
+    { name = "name", type = "string", required = true },
+    { name = "phone", type = "string", required = true },
+    { name = "message", type = "string", required = true },
+]
