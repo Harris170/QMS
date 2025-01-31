@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { TextField, Button, Container, Typography, Box, MenuItem, Select, InputLabel, FormControl, SelectChangeEvent } from "@mui/material";
 import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebaseConfig"; // Import your Firebase config
@@ -14,6 +14,7 @@ const Form: React.FC = () => {
     timeSlot: "",
     queueNumber: 0,
   });
+  const [dateError, setDateError] = useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -36,7 +37,19 @@ const Form: React.FC = () => {
   };
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({ ...form, appointment: e.target.value }); // Update appointment date
+    const selectedDate = new Date(e.target.value);
+    const today = new Date();
+    const fourteenDaysFromNow = new Date(today);
+    fourteenDaysFromNow.setDate(today.getDate() + 14);
+
+    // Check if the selected date is within the range of today and 14 days from now
+    if (selectedDate < today || selectedDate > fourteenDaysFromNow) {
+      setDateError("Please select a date within the next 14 days.");
+      setForm({ ...form, appointment: "" }); // Reset the appointment field if invalid
+    } else {
+      setDateError(""); // Clear error if the date is valid
+      setForm({ ...form, appointment: e.target.value });
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -95,6 +108,8 @@ const Form: React.FC = () => {
             }}
             sx={{ mb: 2 }}
             required
+            error={!!dateError}
+            helperText={dateError}
           />
 
           {/* Time Slot Selection */}
