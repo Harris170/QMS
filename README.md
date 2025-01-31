@@ -13,7 +13,7 @@ The establishment will receive a complete **package**, including the following c
 | **Admin Application**  | A cross-platform application (Windows, Linux, Mac) for **admins** to manage queues, staff, and view logs, graphs, and other trends. The admin interface is user-friendly and doesn't require access to the source code. |
 | **Backend Server**     | The backend server, built with **Axum** (Rust framework), manages queues, staff, and all API communication. The server is pre-configured with an associated **config file** for each establishment. |
 | **Frontend**        | A simple HTML, CSS, and JavaScript-based frontend, which can be replaced by a custom frontend developed by the establishment. Only **IT staff** or developers will handle frontend modifications. |
-| **Firebase Database**                  | A lightweight, embedded database (SQLite) to store all queue, user, and staff data. Each establishment receives a pre-configured database. |
+| **Firebase Database**                  | A database to store all queue, user, and staff data. |
 | **IoT Kiosk Device**                  | A kiosk device with a touchscreen that allows users to input their phone number, validate their queue position, and print a token. The kiosk interfaces with the backend. |
 | **Display and Speakers**              | A low-cost, low-power display and speaker system to show the current queue number and announce the next person in line. The number of devices is based on the number of queues. |
 
