@@ -3,7 +3,9 @@
 > DOCUMENTATION IS INCOMPLETE!
 
 > WARNING
-No documentation for setting up a database (firebase in our case) is present. It is needed for the following to work correctly. The `serviceAccountKey.json` is required to be in the `backend` folder for receiveing the documents submitted by the frontend.
+No documentation for setting up a database (firebase in our case) is present. It is needed for the following to work correctly.
+
+The `serviceAccountKey.json` MUST be in the same location as the `backend.exe`, for receiveing the documents in the database, which were submitted by the frontend.
 
 ## Backend Server
 ```
