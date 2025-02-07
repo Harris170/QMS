@@ -19,18 +19,18 @@ import { db } from "../firebaseConfig"; // Ensure the Firebase config is correct
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const timeSlots = ["10-11 AM", "11-12 PM", "2-3 PM", "3-4 PM", "4-5 PM"];
-const queueSlots = 60; // Max number of available queue slots per time slot
-const daysRange = 14; // Max number of next days available to queue on
+const time_slots = ["10-11 AM", "11-12 PM", "2-3 PM", "3-4 PM", "4-5 PM"];
+const queue_slots = 60; // Max number of available queue slots per time slot
+const days_range = 14; // Max number of next days available to queue on
 
 const Form: React.FC = () => {
   const [form, setForm] = useState({
     name: "",
     phone: "",
     message: "",
-    appointmentDate: null as Date | null,
-    timeSlot: "",
-    queueNumber: 0,
+    scheduled_date: null as Date | null,
+    time_slot: "",
+    queue_number: 0,
   });
 
   const [dateError, setDateError] = useState<string>("");
@@ -40,7 +40,7 @@ const Form: React.FC = () => {
   today.setHours(0, 0, 0, 0);
 
   const lastDay = new Date();
-  lastDay.setDate(today.getDate() + daysRange - 1);
+  lastDay.setDate(today.getDate() + days_range - 1);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -48,43 +48,43 @@ const Form: React.FC = () => {
 
   const handleDateChange = (date: Date | null) => {
     if (date && (date < today || date > lastDay)) {
-      setDateError(`Please select a date within the next ${daysRange} days.`);
-      setForm({ ...form, appointmentDate: null });
+      setDateError(`Please select a date within the next ${days_range} days.`);
+      setForm({ ...form, scheduled_date: null });
     } else {
       setDateError("");
-      setForm({ ...form, appointmentDate: date });
-      checkQueueNumber(date, form.timeSlot);
+      setForm({ ...form, scheduled_date: date });
+      checkQueueNumber(date, form.time_slot);
     }
   };
 
   const handleTimeSlotChange = (e: SelectChangeEvent<string>) => {
-    const timeSlot = e.target.value as string;
-    setForm({ ...form, timeSlot });
-    checkQueueNumber(form.appointmentDate, timeSlot);
+    const time_slot = e.target.value as string;
+    setForm({ ...form, time_slot: time_slot });
+    checkQueueNumber(form.scheduled_date, time_slot);
   };
 
-  const checkQueueNumber = async (date: Date | null, timeSlot: string) => {
-    if (date && timeSlot) {
+  const checkQueueNumber = async (date: Date | null, time_slot: string) => {
+    if (date && time_slot) {
       // Get the current queue count for the selected time slot from Firestore
       const appointmentsRef = collection(db, "appointments");
       const q = query(
         appointmentsRef,
         where("date", "==", date),
-        where("timeSlot", "==", timeSlot)
+        where("time_slot", "==", time_slot)
       );
       const querySnapshot = await getDocs(q);
 
       // If the number of appointments in this time slot is greater than or equal to the maximum allowed queue slots
-      if (querySnapshot.size < queueSlots) {
+      if (querySnapshot.size < queue_slots) {
         const newQueueNumber = querySnapshot.size + 1;
         setForm((prevForm) => ({
           ...prevForm,
-          queueNumber: newQueueNumber,
+          queue_number: newQueueNumber,
         }));
       } else {
         setForm((prevForm) => ({
           ...prevForm,
-          queueNumber: 0,
+          queue_number: 0,
         }));
       }
     }
@@ -94,7 +94,7 @@ const Form: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true); // Set submitting to true when form is being submitted
 
-    if (!form.appointmentDate || !form.timeSlot) {
+    if (!form.scheduled_date || !form.time_slot) {
       toast.error("Please select a date and time slot.");
       setIsSubmitting(false); // Reset submitting state if there's an error
       return;
@@ -104,19 +104,19 @@ const Form: React.FC = () => {
     const appointmentsRef = collection(db, "appointments");
     const q = query(
       appointmentsRef,
-      where("date", "==", form.appointmentDate),
-      where("timeSlot", "==", form.timeSlot)
+      where("date", "==", form.scheduled_date),
+      where("time_slot", "==", form.time_slot)
     );
     const querySnapshot = await getDocs(q);
 
     // If the number of appointments in this time slot is greater than or equal to the maximum allowed queue slots
-    if (querySnapshot.size >= queueSlots) {
+    if (querySnapshot.size >= queue_slots) {
       toast.error("This time slot is full. Please select a different time slot.");
       setIsSubmitting(false); // Reset submitting state if slot is full
       return;
     }
 
-    const newQueueNumber = querySnapshot.size + 1;
+    const new_queue_number = querySnapshot.size + 1;
 
     try {
       // Add the new appointment to Firestore
@@ -124,9 +124,9 @@ const Form: React.FC = () => {
         name: form.name,
         phone: form.phone,
         message: form.message,
-        appointmentDate: form.appointmentDate,
-        timeSlot: form.timeSlot,
-        queueNumber: newQueueNumber,
+        scheduled_date: form.scheduled_date,
+        time_slot: form.time_slot,
+        queue_number: new_queue_number,
       });
 
       // Reset form state after successful submission
@@ -134,9 +134,9 @@ const Form: React.FC = () => {
         name: "",
         phone: "",
         message: "",
-        appointmentDate: null,
-        timeSlot: "",
-        queueNumber: 0,
+        scheduled_date: null,
+        time_slot: "",
+        queue_number: 0,
       });
 
       // Show success toast
@@ -221,7 +221,7 @@ const Form: React.FC = () => {
                   Appointment Date
                 </Typography>
                 <DatePicker
-                  selected={form.appointmentDate}
+                  selected={form.scheduled_date}
                   onChange={handleDateChange}
                   minDate={today}
                   maxDate={lastDay}
@@ -252,7 +252,7 @@ const Form: React.FC = () => {
                   Time Slot
                 </Typography>
                 <Select
-                  value={form.timeSlot}
+                  value={form.time_slot}
                   onChange={handleTimeSlotChange}
                   required
                   sx={{
@@ -260,7 +260,7 @@ const Form: React.FC = () => {
                     },
                   }}
                 >
-                  {timeSlots.map((slot) => (
+                  {time_slots.map((slot) => (
                     <MenuItem key={slot} value={slot}>
                       {slot}
                     </MenuItem>
@@ -271,9 +271,9 @@ const Form: React.FC = () => {
           </Grid>
 
           {/* Queue Number */}
-          {form.queueNumber > 0 && (
+          {form.queue_number > 0 && (
             <Typography sx={{ mb: 2 }}>
-              Your Queue Number is {form.queueNumber} of {queueSlots}
+              Your Queue Number is {form.queue_number} of {queue_slots}
             </Typography>
           )}
 

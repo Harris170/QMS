@@ -1,6 +1,17 @@
 [package]
-name = "backend"
+name = "learning-axum"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+axum = "0.8.1"
+chrono = "0.4.39"
+reqwest = { version = "0.12.12", features = ["json"] }
+serde = { version = "1.0.217", features = ["derive"] }
+serde_json = "1.0.138"
+tokio = { version = "1.43.0", features = ["full"] }
+uuid = { version = "1.13.1", features = ["v4", "serde"] }
+yup-oauth2 = "12.1.0"
+
+[dev-dependencies]
+anyhow = "1.0.95"

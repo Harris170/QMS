@@ -4,6 +4,9 @@
 
 This project aims to develop an **IoT-based queue management system**. Users can queue for services using their phone number as a unique identifier. The system will provide real-time updates such as estimated waiting times and arrival times at the establishment. The solution is implemented using **Rust**, with a focus on simplicity, reliability, and scalability.
 
+## Documentation
+Documentation to get started can be found [here](docs/GettingStarted.md)
+
 ### System Components
 
 The establishment will receive a complete **package**, including the following components:
@@ -68,7 +71,7 @@ This configuration ensures that the backend can adapt to each establishment’s 
 A simple **React webapp** will be provided by default for testing and internal use. Establishments will be able to:
 - Replace the default frontend with a **custom frontend**.
 - Develop the custom frontend using any frameworks or libraries of their choice, provided they adhere to the **API** specifications of the backend.
-  
+
 **IT teams** or **developers** within the establishment are responsible for maintaining the frontend. They can refer to the provided **API documentation** and backend configuration to ensure the frontend communicates correctly with the backend.
 
 ### 3. **Database (Firebase)**
