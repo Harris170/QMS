@@ -1,0 +1,44 @@
+[network]
+ip_address = '127.0.0.1'
+port = '8000'
+
+[database]
+firebase_project_id = 'queuemanagementsystem-69ea3'
+collection = 'appointments'
+service_account_key_path = 'serviceAccountKey.json'
+
+[queue]
+queues = 10
+queue_slots = 10
+days_range = 14
+
+# Fields same as in the firebase database #
+[[form.fields]]
+name = 'name'
+field_type = 'string'
+required = true
+
+[[form.fields]]
+name = 'phone'
+field_type = 'string'
+required = true
+
+[[form.fields]]
+name = 'message'
+field_type = 'string'
+required = true
+
+[[form.fields]]
+name = 'time_slot'
+field_type = 'string'
+required = true
+
+[[form.fields]]
+name = 'time_stamp'
+field_type = 'string'
+required = true
+
+[[form.fields]]
+name = 'queue_number'
+field_type = 'integer'
+required = true
