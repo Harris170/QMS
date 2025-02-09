@@ -8,6 +8,8 @@ use axum::{routing::get, Router};
 use std::sync::Arc;
 use std::{fs, path::Path};
 
+const VERSION: &str = "0.1.0";
+
 #[tokio::main]
 async fn main() -> Result<()> {
     
@@ -42,7 +44,7 @@ async fn main() -> Result<()> {
     let listener = tokio::net::TcpListener::bind(&address).await.unwrap();
 
     println!("-------------------------------------");
-    println!("VERSION: 1");
+    println!("VERSION: {VERSION}");
     println!("-->> LISTENING ON {address} <<--");
     println!("-------------------------------------");
     axum::serve(listener, app).await.unwrap();

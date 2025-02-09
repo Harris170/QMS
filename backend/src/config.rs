@@ -32,7 +32,7 @@ impl Config {
     }
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Clone, Debug, Deserialize)]
 pub struct NetworkConfig {
     ip_address: String,
     port: String,
@@ -48,7 +48,7 @@ impl NetworkConfig {
     }
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Clone, Debug, Deserialize)]
 pub struct DatabaseConfig {
     firebase_project_id: String,
     collection: String,
@@ -69,7 +69,7 @@ impl DatabaseConfig {
     }
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Clone, Debug, Deserialize)]
 pub struct QueueConfig {
     queues: i64,
     queue_slots: i64,
@@ -90,7 +90,7 @@ impl QueueConfig {
     }
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Clone, Debug, Deserialize)]
 pub struct FormConfig {
     fields: Vec<FormField>,
 }
@@ -101,7 +101,7 @@ impl FormConfig {
     }
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Clone, Debug, Deserialize)]
 pub struct FormField {
     name: String,
     field_type: String,
