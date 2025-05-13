@@ -45,13 +45,20 @@ curl http://127.0.0.1:8000/api/get_document?id=<ID>
 ```
 
 ### Getting filtered and sorted documents
-Documents are filtered by today's date and then sorted by `time_slot` and `queue_number`.
+Documents are filtered by current date and then sorted by `time_slot` and `queue_number`.
 
 Specifying `amount` will give the same amount of documents that are filtered and sorted.
 
 ```
 curl localhost:8000/api/get_multiple_documents?amount=5
 ```
+
+> [!NOTE]
+> If you see this output
+> ```
+> []
+> ```
+> Then it means that either the queue id was incorrect or no document found for current date, as they get filtered for current date. 
 
 ## Queue-Desk Application
 ```
