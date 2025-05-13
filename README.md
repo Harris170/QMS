@@ -13,7 +13,7 @@ The establishment will receive a complete **package**, including the following c
 
 | **Component**                        | **Description**                                                                                                                                                      |
 |--------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Admin Application**  | A cross-platform application (Windows, Linux, Mac) for **admins** to manage queues, staff, and view logs, graphs, and other trends. The admin interface is user-friendly and doesn't require access to the source code. |
+| **Queue-Desk Application**  | A cross-platform GUI application (Windows, Linux, Mac) for **admins** to manage queues, staff, and view logs, graphs, and other trends. The admin interface is user-friendly and doesn't require access to the source code. |
 | **Backend Server**     | The backend server, built with **Axum** (Rust framework), manages queues, staff, and all API communication. The server is pre-configured with an associated **config file** for each establishment. |
 | **Frontend**        | A simple HTML, CSS, and JavaScript-based frontend, which can be replaced by a custom frontend developed by the establishment. Only **IT staff** or developers will handle frontend modifications. |
 | **Firebase Database**                  | A database to store all queue, user, and staff data. |
@@ -36,7 +36,7 @@ Admins have full control over the backend, frontend configuration, and overall s
 
 Admins will be able to use:
 - A **backend binary** with an associated **configuration file** for setting up field data.
-- The **admin app** (cross-platform).
+- The **Queue-Desk app** in **Admin** mode.
 - A **frontend** to test or replace with a custom frontend.
 
 ### Staff
@@ -45,7 +45,7 @@ Staff members operate at the counters and manage the queues through a simple des
 - **Viewing Queue Data**: Staff can view the current queue status and who is managing each queue through their **dedicated panel** within the admin app.
 
 Staff will receive:
-- The **admin app** that provides the interface to update the queue and view data.
+- The **Queue-Desk app** in **Staff** mode, that provides the interface to update the queue and view data.
 
 ---
 

@@ -1,2 +1,6 @@
+.*
+!.gitignore
+
+queue-desk/target/
 backend/target/
 backend/serviceAccountKey.json
