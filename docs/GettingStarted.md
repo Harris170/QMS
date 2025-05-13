@@ -1,11 +1,12 @@
 # Getting Started
 
-> DOCUMENTATION IS INCOMPLETE!
+> [!NOTE]
+> **DOCUMENTATION IS INCOMPLETE!**
 
-> WARNING
-No documentation for setting up a database (firebase in our case) is present. It is needed for the following to work correctly.
-
-The `serviceAccountKey.json` MUST be in the same location as the `backend.exe`, for receiveing the documents in the database, which were submitted by the frontend.
+> [!WARNING]
+> Currently, there is no documentation yet for setting up a database (firebase in our case). It is needed for the following to work correctly.
+> The `serviceAccountKey.json` MUST be in the same location as the `backend.exe`, for receiveing the documents from the database, which were
+> submitted by the frontend website. Or alternatively, provide the path to `serviceAccountKey.json` file in `backend/Config.toml`.
 
 ## Backend Server
 ```
@@ -51,3 +52,19 @@ Specifying `amount` will give the same amount of documents that are filtered and
 ```
 curl localhost:8000/api/get_multiple_documents?amount=5
 ```
+
+## Queue-Desk Application
+```
+cd queue-desk
+```
+
+> [!NOTE]
+> Pre-built binaries will be available soon.
+
+### Building
+Install `dioxus-cli` for building the application from scratch. [Dioxus installation](https://dioxuslabs.com/learn/0.6/getting_started/#install-the-dioxus-cli). Then,
+
+```
+dx serve
+```
+
