@@ -20,6 +20,9 @@ The establishment will receive a complete **package**, including the following c
 | **IoT Kiosk Device**                  | A kiosk device with a touchscreen that allows users to input their phone number, validate their queue position, and print a token. The kiosk interfaces with the backend. |
 | **Display and Speakers**              | A low-cost, low-power display and speaker system to show the current queue number and announce the next person in line. The number of devices is based on the number of queues. |
 
+### System Architecture Diagram
+<img src="https://github.com/user-attachments/assets/021cb5cc-c0e8-4f7c-a344-a7ed21eefeb2" alt="System Architecture Diagram" width="400"/>
+
 ---
 
 ## Roles and Permissions
